@@ -43,9 +43,14 @@ Las anotaciones en rojo y azul son un ejemplo de cómo configurar SYSCLK a 80 MH
  
 Utilizaremos el clock tree y el ejemplo mencionado para guiarnos en la configuración del SYSCLK. 
 
-Nuestro primer paso es encender el reloj que utilizaremos para controlar el reloj maestro del sistema (SYSCLK). Para esto, configuramos el registro de control de relojes RCC_CR. Como queremos utilizar MSI, ponemos en 1 el bit 0 de este registro (recuadro azul). Ahora debemos esperar a que MSI esté listo, y lo sabremos cuando el bit 1 del mismo registro se ponga en uno (recuadro naranja); esto se hace porque no podemos modificar la frecuencia que queremos seleccionar sino hasta que el reloj esté listo o apagado.
+Nuestro primer paso es encender el reloj que utilizaremos para controlar el reloj maestro del sistema (SYSCLK). Para esto, configuramos el registro de control de relojes RCC_CR. Como queremos utilizar MSI, ponemos en uno el bit 0 de este registro (recuadro azul). Ahora debemos esperar a que MSI esté listo, y lo sabremos cuando el bit 1 del mismo registro se ponga en uno (recuadro naranja); esto se hace porque no podemos modificar la frecuencia que queremos seleccionar sino hasta que el reloj esté listo o apagado.
 
 ![](images/RCC_CR_1.png)
+
+```
+RCC_CR |= (1 << 0);
+while(!(RCC->CR & (1 << 1)));
+```
 
 Una vez MSI está listo, vamos a indicar la frecuencia que queremos para nuestro reloj. En la imagen del clock tree podemos ver que debemos continuar modificando el mismo registro pero esta vez los bits 4:7, donde vamos a escribir 0111 para seleccionar la frecuencia de 8MHz. Resulta que la frecuencia del reloj MSI (MSIRANGE) puede ser seleccionada desde dos registros diferentes: CSR y CR, por lo que para especificar cuál se está utilizando está MSIRGSEL (bit 3), que pondremos en 1 porque estamos configurando el rango desde el registro CR (0 si utilizáramos CSR).
 
