@@ -34,7 +34,17 @@ La frecuencia máxima del reloj del sistema es de 80 MHz. Después de reiniciar 
 
 ### ¿Cómo lo hago?
 
-En este pequeño ejercicio se mostrará cómo seleccionar MSI a 8MHz como reloj maestro del sistema.
+En este pequeño ejercicio se mostrará cómo seleccionar MSI a 8MHz como reloj maestro del sistema, pero para eso debemos conocer primero el clock tree de nuestro uC.
 
+En la siguiente imagen se encuentra la estructura que se conoce como árbol de reloj (o clock tree). 
+
+![](images/clock_tree.jpg)
+Las anotaciones en rojo y azul son un ejemplo de cómo configurar SYSCLK a 80 MHz con PLL como fuente y SAI a 11.2941 MHz (no veremos la configuración de SAI).
+ 
+Utilizaremos el clock tree y el ejemplo mencionado para guiarnos en la configuración del SYSCLK. 
+
+Nuestro primer paso es encender el reloj que utilizaremos para controlar el reloj maestro del sistema (SYSCLK). Para esto, configuramos el registro de control de relojes RCC_CR. Como queremos utilizar MSI, ponemos en 1 el bit 0 de este registro (recuadro azul). Ahora debemos esperar a que MSI esté listo, y lo sabremos cuando el bit 1 del mismo registro se ponga en uno (recuadro naranja); esto se hace porque no podemos modificar la frecuencia que queremos seleccionar sino hasta que el reloj esté listo o apagado.
+
+![](images/
 
 
