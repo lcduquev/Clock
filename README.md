@@ -14,7 +14,7 @@ Desde el punto de vista energético, a mayor velocidad y mayor precision habrá 
 
 ## Manos a la obra 
 
-En esta práctica se propone probar el efecto del uso de distintos modos de reloj del sistema y oscilador en un micrcontrolador de ultra-bajo consumo.
+En esta práctica se propone probar el efecto del uso de distintos modos de reloj del sistema y oscilador en un microcontrolador de ultra-bajo consumo.
 
 El STM32L476 Nucleo-64 cuenta con 3 relojes internos y 2 externos (de los cuales uno NO viene soldado en la Nucleo). Los relojes externos tienden a ser más precisos que los internos pero ocupan más espacio.
 
@@ -29,6 +29,12 @@ Adicionalmente, cuenta con 2 fuentes de reloj de ultra baja potencia que se pued
 
 * Cristal externo de baja velocidad (LSE) de 32.768 kHz.
 * RC interno de baja velocidad (LSI) de 32 kHz, también utilizado para controlar el watchdog (perro guardián) independiente (±5%).
+
+La frecuencia máxima del reloj del sistema es de 80 MHz. Después de reiniciar el sistema, el oscilador MSI, en 4 MHz, se selecciona como reloj del sistema.
+
+### ¿Cómo lo hago?
+
+En este pequeño ejercicio se mostrará cómo seleccionar MSI a 8MHz como reloj maestro del sistema.
 
 
 
