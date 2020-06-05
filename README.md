@@ -47,6 +47,8 @@ Nuestro primer paso es encender el reloj que utilizaremos para controlar el relo
 
 ![](images/RCC_CR_1.png)
 
+Una vez MSI está listo, vamos a indicar la frecuencia que queremos para nuestro reloj. En la imagen del clock tree podemos ver que debemos modificar el mismo registro RCC_CR
+
 ![](images/RCC_CR_2.png)
 
 ![](images/RCC_CFRG.png)
