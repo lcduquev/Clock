@@ -47,8 +47,10 @@ Nuestro primer paso es encender el reloj que utilizaremos para controlar el relo
 
 ![](images/RCC_CR_1.png)
 
-Una vez MSI está listo, vamos a indicar la frecuencia que queremos para nuestro reloj. En la imagen del clock tree podemos ver que debemos modificar el mismo registro RCC_CR
+Una vez MSI está listo, vamos a indicar la frecuencia que queremos para nuestro reloj. En la imagen del clock tree podemos ver que debemos continuar modificando el mismo registro pero esta vez los bits 4:7, donde vamos a escribir 0111 para seleccionar la frecuencia de 8MHz. Resulta que la frecuencia del reloj MSI (MSIRANGE) puede ser seleccionada desde dos registros diferentes: CSR y CR, por lo que para especificar cuál se está utilizando está MSIRGSEL (bit 3), que pondremos en 1 porque estamos configurando el rango desde el registro CR (0 si utilizáramos CSR).
 
 ![](images/RCC_CR_2.png)
+
+Ya hemos hecho la configuración de MSI a 8MHz, de modo que ahora debemos indicarle al MUX seleccionador cuál es el reloj de fuente para SYSCLK. Como podemos ver en el clock tree, esto lo hacemos modificando los bits 0 y 1 del registro RCC_CFRG; para este caso, escribiendo 00 en estos bits pues queremos usar MSI. De nuevo debemos esperar, esta vez a que MSI sea utilizado como fuente para el reloj del sistema; lo sabremos cuando los bits 3:2 del registro estén en 00.
 
 ![](images/RCC_CFRG.png)
