@@ -71,4 +71,4 @@ RCC->CFGR &= 0xFFFFFFFC;
 RCC->CFGR |= 0x00000000;
 while (!(RCC->CFGR & (0 << 2)));
 ```
-¡Listo! Eso es todo para configurar MSI a 8MHz. Con esta configuración crearemos una función para aplicarle la configuración al sistema y hacer un LED Blink a esta frecuencia. El código con la aplicación completa que incluye la configuración de otro reloj para ver cómo el LED hace blink a dos frecuencias con los dos diferentes SYSCLK se puede encontrar [aquí](images/RCC_CFRG.png).
+¡Listo! Eso es todo para configurar MSI a 8MHz. Con esta configuración crearemos una función para aplicarle la configuración al sistema y hacer un LED Blink a esta frecuencia. El código con la aplicación completa que incluye la configuración de otro reloj para ver cómo el LED hace blink a dos frecuencias con los dos diferentes SYSCLK se puede encontrar [aquí](main.c).
