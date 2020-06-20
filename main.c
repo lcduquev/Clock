@@ -73,10 +73,10 @@ int main(void)
 
 	while(1)
 	{
-		GPIOA->ODR |= 0x0020;			// write 1 to pin 5 (LED ON)
-		delay(500000);
-		GPIOA->ODR &= 0x0000; //LED OFF
-		delay(500000);
+		GPIOA->ODR |= 0x0020;	// write 1 to pin 5 (LED ON)
+		delay(500000);		//stay on
+		GPIOA->ODR &= 0x0000; 	//LED OFF
+		delay(500000);		//stay off
 		
 	}
 
