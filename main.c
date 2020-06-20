@@ -74,9 +74,9 @@ int main(void)
 	while(1)
 	{
 		GPIOA->ODR |= 0x0020;	// write 1 to pin 5 (LED ON)
-		delay(500000);		//stay on
+		delay(500000);		//Stay on for 62ms
 		GPIOA->ODR &= 0x0000; 	//LED OFF
-		delay(500000);		//stay off
+		delay(500000);		//stay off for 62ms
 		
 	}
 
