@@ -51,6 +51,11 @@ Nuestro primer paso es encender el reloj que utilizaremos para controlar el relo
 RCC->CR |= (1 << 0);
 while(!(RCC->CR & (1 << 1)));
 ```
+Ahora debemos configurar el registro FLASH_ACR para poder leer correctamente los datos de esta memoria a la frecuencia que estamos configurando. Los bits que debemos modificar son los 2:0 (que corresponden a la latencia) y cuyo valor es asignado dependiendo de la velocidad del reloj; la tabla 11 del manual de referencia del microcontrolador nos indica que estos bits deben ir en 0 para 8MHz. Los bits 8, 9 y 10 deben ponerse en 1 siempre.
+
+```
+	FLASH->ACR = (1 << 8) | (1 << 9) | (1 << 10 ) | (0 << 0);
+```
 
 Una vez MSI está listo, vamos a indicar la frecuencia que queremos para nuestro reloj. En la imagen del clock tree podemos ver que debemos continuar modificando el mismo registro pero esta vez los bits 7:4, donde vamos a escribir 0111 para seleccionar la frecuencia de 8MHz. Resulta que la frecuencia del reloj MSI (MSIRANGE) puede ser seleccionada desde dos registros diferentes: CSR y CR, por lo que para especificar cuál se está utilizando está MSIRGSEL (bit 3), que pondremos en 1 porque estamos configurando el rango desde el registro CR (0 si utilizáramos CSR).
 
